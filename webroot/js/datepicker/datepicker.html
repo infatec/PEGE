@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>frequency decoder ~ Unobtrusive JavaScript datePicker (calendar) widgit demo</title>         
+<script type="text/javascript" src="datepicker.js"></script>
+<script type="text/javascript" src="pt.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="pt-br.js"></script>
+<link href="datepicker.css" rel="stylesheet" type="text/css" />
+
+<script>
+
+function habilita()
+{
+	$("#dp-de3").attr("disabled",true);
+}
+
+</script>
+
+</head>
+<body>
+  <p><input type="text" class="w16em dateformat-d-sl-m-sl-Y show-weeks display-inline" id="dp-de3" name="dp-de3" value="" onFocus="alert(this.value)" disabled="disabled"/></p>
+      
+  <button onclick="datePickerControlle	r.disable('dp-de3'); return false;">Disable</button>
+      <button onclick="datePickerController.enable('dp-de3'); return false;">Enable</button>           
+
+</body>
+</html>
+

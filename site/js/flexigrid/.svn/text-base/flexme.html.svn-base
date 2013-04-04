@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Flexigrid</title>
+<link rel="stylesheet" type="text/css" href="css/flexigrid/flexigrid.css" />
+<script type="text/javascript" src="./flexigrid/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="./flexigrid/flexigrid.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $("#flex1").flexigrid
+            (
+            {
+            url: 'post.php',
+            dataType: 'xml',
+            colModel : [
+                {display: 'ID', name : 'id', width : 40, sortable : true, align: 'center', hide: true},
+                {display: 'URL', name : 'url', width : 450, sortable : true, align: 'left'},
+                {display: 'File Name', name : 'filename', width : 270, sortable : true, align: 'left'},
+                {display: 'Availability', name : 'availability', width : 50, sortable : true, align: 'center'},
+                {display: 'State', name : 'state', width : 40, sortable : true, align: 'center'},
+                {display: 'Total Size', name : 'totalsize', width : 90, sortable : false, align: 'center'},
+                {display: 'Current Size', name : 'currentsize', width : 90, sortable : false, align: 'center'},
+                {display: 'Procent', name : 'procent', width : 40, sortable : true, align: 'center'},
+                {display: 'Log',  width : 20, sortable : false, align: 'center'},
+                ],
+            buttons : [
+                {name: 'Add', bclass: 'add', onpress : test},
+                {separator: true},
+                {name: 'Delete', bclass: 'delete', onpress : test},
+                {separator: true},
+                {name: 'Select All', bclass : 'selectall', onpress : test},
+                {name: 'DeSelect All', bclass : 'deselectall', onpress : test},
+                {separator: true}
+                ],
+            searchitems : [
+                {display: 'URL', name : 'url'},
+                {display: 'Filename', name : 'filename', isdefault: true}
+                ],
+            sortname: "state",
+            sortorder: "asc",
+            usepager: true,
+            title: '',
+            useRp: false,
+            rp: 10,
+            showTableToggleBtn: true,
+            singleSelect: true
+            }
+            );   
+});
+$(document).ready(function() {
+    $("#myDialog").dialog({
+        autoOpen: false,
+        resizable: false,
+        position: 'center',
+        stack: true,
+        height: 'auto',
+        width: 'auto',
+        modal: true
+     });
+
+    $("#showDialog").button().click(function (event) {
+        $("#myDialog").dialog('open');
+    });
+});
+function test(com,grid)
+{
+    if (com=='Add') {
+        $("#myDialog").dialog('open');
+    }
+    if (com=='Select All')
+    {
+        $('.bDiv tbody tr',grid).addClass('trSelected');
+    }
+
+    if (com=='DeSelect All')
+    {
+        $('.bDiv tbody tr',grid).removeClass('trSelected');
+    }
+
+    if (com=='Delete')
+        {
+           if($('.trSelected',grid).length>0){
+               if(confirm('Delete ' + $('.trSelected',grid).length + ' items?')){
+                    var items = $('.trSelected',grid);
+                    var itemlist ='';
+                    for(i=0;i<items.length;i++){
+                        itemlist+= items[i].id.substr(3)+",";
+                    }
+                    $.ajax({
+                       type: "POST",
+                       url: "delete.php",
+                       data: "items="+itemlist,
+                       success: function(data){
+                        $('#flex1').flexReload();
+                        alert(data);
+                       }
+                    });
+                }
+            } else {
+                return false;
+            } 
+        }          
+} 
+</script>
+</head>
+
+<body>
+<table id="flex1" style="display:none"></table>
+<div id="myDialog" style="display:none" title=""></div>
+</body>
+</html>

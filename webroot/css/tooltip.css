@@ -1,0 +1,13 @@
+/*tooltip the style starts here */
+#qTip {
+ display: none;
+ background: url(../img_sistema/tooltip-arrow.gif) no-repeat top center;
+ padding-top:4px;
+ color: #fdfdfd;
+ position: absolute;
+ z-index: 1000;
+ font-weight:normal;
+ max-width:150px;
+}
+div.out{border:1px solid #1f1f1f; background:#454545;}
+div.in{ border:1px solid #626262; font-size:11px;text-align: left; padding:3px 5px;}

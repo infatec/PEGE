@@ -1,0 +1,32 @@
+/* TAG PRINCIPAIS*/
+body {margin: 0 0 20px 0; padding: 0;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px;text-align: center;} 
+h1{font-size: 22px;}
+h2{font-size: 18px;}
+h3{font-size: 16px;}
+h4{font-size: 14px;}
+h5{font-size: 12px;}
+h6{font-size: 10px;}
+p{font-size: 10px;}
+fieldset{padding: 10px 5px;-moz-border-radius:4px;border: 1px solid #666;margin: 20px 0;background: #f5f5f5;}
+legend{padding: 10px;background: url(../img_sistema/bg_legend.jpg) repeat-x;margin: 0 0 0 10px;border: 1px solid #666;color: #111;-moz-border-radius:4px;font-variant: small-caps;font-weight: bold;}
+select{padding: 2px 1px;margin: 1px 0;}
+option{padding:0 0 0 10px}
+img{margin: 0 1px 0 3px;border: none;}
+table{font-size: 12px;}
+a:visited,a:link { color: #598319; text-decoration: none;font-size: 12px;}
+a:hover { color: #598319; text-decoration: underline;}
+/* DIVS */
+#main{width: 800px;height: 800px;margin: 5px auto;padding: 5px;}
+#header{width: auto;text-align: center;}
+    #header img{float: left;height: 100px;margin: 5px 0 0 0;}
+#container{clear: both;margin: 20px 0 5px 0;}
+    #container h1{text-align: center;}
+    #container span{font-size: 38px;font-family: New Century Schoolbook, serif}
+    #container img{height: 120px;float: right;margin: -20px 0 0 0;border: 1px solid #666;padding: 1PX;}
+    #container table{width: 600px;}
+    #container table td.titulo{font-weight: bold;text-align: right;}
+    #container table td.conteudo{text-align: left;}
+    #container table.prontuario{text-align: center;width: 500px;}
+    #container table.outros{text-align: center;width: 500px;float: left;}
+    #container table.outros td.titulo{width: 120px;}
+#footer{margin: 10px 0;text-align: center;}

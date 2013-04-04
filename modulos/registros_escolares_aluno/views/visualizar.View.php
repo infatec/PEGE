@@ -1,0 +1,90 @@
+<html>
+<head>
+<title><?= $config["tituloPagina"]?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<?=URL.'/webroot/css/'?>estilo.css" rel="stylesheet" type="text/css">
+<script src="<?=URL.'/webroot/js/'?>funcoes.js"></script>
+<script src="<?=URL.'/webroot/js/'?>mascaras.js"></script>
+<script src="<?=URL.'/webroot/js/'?>jquery.js"></script>
+</head>
+<body>
+    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr><td height="80" valign="top" bgcolor="#FFFFFF"><? include(DOMAIN_PATH.'includes/topo.php') ?></td></tr>
+        <tr>
+            <td valign="top">
+            	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr> 
+                        <td width="20" valign="top"></td>
+                        <td valign="top">
+                            <table width="100%" border="0" cellspacing="6" cellpadding="0">
+                                <tr>
+                                    <td height="25">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="top">  <? include(DOMAIN_PATH."includes/barra.php")?></td>
+                                </tr>
+                                <tr> 
+                                    <td align="center" valign="top">
+                                         <table width="830" border="0" cellspacing="2" cellpadding="0" class="borda" style="margin:5px" >
+                                           
+<tr>
+                                    <td height='36' align='right' class='text_bold_preto'>Código:</td>
+                                    <td class='text_padrao'>
+                                        <?=stripslashes($turma->codigo)?>
+                                    </td>
+                                </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Nivel de ensino</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("nivel_ensino_mec","nome",$turma->nivelEnsinoMecId)?>
+                                </td>
+                            </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Turno</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("turno","nome",$turma->turnoId)?>
+                                </td>
+                            </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Ano</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("ano","nome",$turma->anoId)?>
+                                </td>
+                            </tr>
+<tr>
+                                    <td height='36' align='right' class='text_bold_preto'>Número Maximo de Alunos:</td>
+                                    <td class='text_padrao'>
+                                        <?=stripslashes($turma->numMaxAluno)?>
+                                    </td>
+                                </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Escola</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("escola","nome",$turma->escolaId)?>
+                                </td>
+                            </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Ano Letivo</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("ano_letivo","identificacao",$turma->anoLetivoId)?>
+                                </td>
+                            </tr>
+<tr>
+                                <td height='36' align='right' class='text_bold_preto'>Sala</td>
+                                <td class='text_padrao'>
+                                    <?=DAOFactory::getTurmaDAO()->toString("sala","nome",$turma->salaId)?>
+                                </td>
+                            </tr>
+
+                                        </table>
+                                  </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+				</table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

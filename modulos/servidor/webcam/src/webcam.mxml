@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                layout="absolute"
+                backgroundColor="#f6f6f6"
+                backgroundGradientColors="[#f6f6f6, #bbbbbb]"
+                creationComplete="init()"
+                viewSourceURL="231/index.html" borderColor="#EFF5F9" height="370" themeColor="#EEF4F6">
+
+    <!-- Texto Superior -->
+    <mx:Label x="10"
+              y="10"
+              fontSize="20"
+              fontWeight="bold"
+              text="Captura de imagem"/>
+    <!-- Barra Horizontal -->
+    <mx:HRule x="10" y="49" width="690"/>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.graphics.codec.JPEGEncoder;
+            import mx.controls.Alert;
+            import flash.net.navigateToURL;
+            import mx.rpc.events.ResultEvent;
+            import mx.graphics.ImageSnapshot;
+            import flash.external.*;
+
+            [Bindable]
+            private var imagemBase64:String
+
+            private function init():void
+            {
+                var camera:Camera=Camera.getCamera();
+                webcam_foto.attachCamera( camera );
+            }
+
+            private function copiarFoto():void
+            {
+                var imagemWebcam:ImageSnapshot=ImageSnapshot.captureImage( webcam_foto, 0, new JPEGEncoder( 100 ));
+                imagemBase64=ImageSnapshot.encodeImageAsBase64( imagemWebcam );
+                imgWebcam.source=imagemWebcam.data
+              //  btSalvar.enabled=true;
+                salvar();
+            }
+
+            private function salvar():void
+            {
+               
+                if (ExternalInterface.available) {
+				
+					ExternalInterface.call("carregaFoto",imagemBase64);   
+					lblMessage.text = "Foto Gerada!";
+				
+				} else
+				
+					lblMessage.text = "Erro no envio!";
+            }
+          
+         
+        ]]>
+    </mx:Script>
+   
+    <mx:VideoDisplay id="webcam_foto"
+                     x="10"
+                     y="59"
+                     width="320"
+                     height="240"/>
+    <mx:Image id="imgWebcam"
+              x="344"
+              y="59"
+              width="320"
+              height="240"/>
+    <mx:Button click="copiarFoto()"
+               x="10"
+               y="307"
+               label="Pré Visualizar e Salvar"/>
+    <mx:Label x="10" y="337" text="Status de Envio:" fontSize="12" fontWeight="bold"/>
+    <mx:Label x="128" y="337" text="" id="lblMessage" fontSize="12"/>
+</mx:Application>
